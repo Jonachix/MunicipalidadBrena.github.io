@@ -1,0 +1,8 @@
+var poli = {
+"type": "FeatureCollection",
+"name": "poli",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "OBJECTID": 109, "ID_COM": "COM_027", "SUBTIPO": "Comisarias", "INSTITU": "PNP", "NOMBRE": "Comisaria de Breña", "DIR_TER": "DIRTEPOL VII", "DIV_TER": "DIVTER OESTE", "CATEG": "A", "ESENCIAL": "Normal", "DIRECCION": "Jr. General Varela N 1978", "DISTRITO": "Breña", "PROV": "LIMA", "TEL": "4311425 - 4314354", "SISMO": "Peligro bajo", "ACCES_NOC": "regular", "ACCES_DIA": "mala", "PEL_FIN": "No expuesto" }, "geometry": { "type": "Point", "coordinates": [ -77.052638099768444, -12.067331392829487 ] } }
+]
+}

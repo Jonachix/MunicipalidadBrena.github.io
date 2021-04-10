@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Breña</title>
+
+    <!--leaftlet css-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            width: 100%;
+            height: 98vh;
+        }
+    </style>
+    <!--Buscador link-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+
+<body>
+    <hi><center>Sistema de Consulta para La Municipalidad Distrital de Breña</center></hi>
+    <div id="map"></div>
+</body>
+
+</html>
+<!--leatleft js -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!--Insertar GEOJSON -->
+
+<script src="./data/brena_lotes.geojson"></script>
+<script src="./data/distrito.geojson"></script>
+<script src="./data/poli.geojson"></script>
+<script src="./data/hospi.geojson"></script>
+<script src="./data/brena_verde.geojson"></script>
+<script src="./data/brena_pob.geojson"></script>
+
+<!--Buscador script -->
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<!--Iconos -->
+
+
+<script>
+    //Iniciando con el Mapa
+    var map = L.map('map').setView([-12.0625764, -77.0517047], 15.25);
+
+    //Capa OSM
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    })
+
+    //Mapa Base
+    var dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+    });
+
+    //Mapa Gris
+    var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+	maxZoom: 20,
+	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+    });
+
+    //Mapa Satelital
+    var satelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    });
+    
+    //Mapa GoogleStreet
+    var street = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+    });
+    
+    dark.addTo(map)
+    
+
+    /*========================================
+                    GEOJSON
+    ========================================*/
+
+
+
+    var distritoData = L.geoJSON(distrito, {
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup('<b>Distrito:</b>' + layer.feature.properties.NOMBDIST)
+        },
+        style: {
+            color: 'black',
+            fillColor: 'lightblue',
+            fillOpacity: 0.1,
+            dashArray: '10'
+        }
+    }).addTo(map)
+    //var lotesData = L.geoJSON(brena_lotes).addTo(map)
+    var verdeData = L.geoJSON(brena_verde, {
+        style: {
+            color: 'green',
+            fillColor: 'lightgreen',
+            fillOpacity: 0.1,
+        }
+    }).addTo(map)
+        var brena_pobData = L.geoJSON(brena_pob, {
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup('<b>Total de personas:</b>' + layer.feature.properties.total+
+            '<br/><b>Total hombres:</b>' + layer.feature.properties.hombres +
+            '<br/><b>Total mujeress:</b>' + layer.feature.properties.mujeres
+            )
+        },
+        style: {
+            color: 'orange',
+            fillColor: 'brown'
+        }
+    }).addTo(map)
+    var hospiData = L.geoJSON(hospi).addTo(map)
+    var poliData = L.geoJSON(poli).addTo(map)
+
+    
+
+     //Controlador de Capas
+    var MapaBase = {
+    "OSM": osm,
+    "Dark": dark,
+    "Mapa Satelital": satelite,
+    "Google Street": street
+    };
+
+    var overlayMaps = {
+        'Distrito': distritoData,
+        'Lotes de Breña': brena_pobData,
+        'Areas Verdes' : verdeData,
+        'Hospital': hospiData,
+        'Comisaria': poliData
+    }
+
+    L.control.layers(MapaBase, overlayMaps, {collapsed: false}).addTo(map);
+
+    //Buscador de Localización
+    L.Control.geocoder().addTo(map);
+
+</script>

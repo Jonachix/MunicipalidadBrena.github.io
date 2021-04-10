@@ -1,0 +1,8 @@
+var hospi = {
+"type": "FeatureCollection",
+"name": "hospi",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "FID_": 0, "TipoEstabD": "CON INTERNAMIENTO", "DescClasif": "INSTITUTOS DE SALUD ESPECIALIZADOS", "EstabNombr": "INSTITUTO NACIONAL DE SALUD DEL NIÃ‘O", "EstabNom_1": "INSTITUTO NACIONAL DE SALUD DEL NIÃ‘O", "Institucio": "MINSA", "EstabDir": "AV. BRASIL 600", "ProvDesc": "LIMA", "DepaDesc": "LIMA", "EstTelefon": "14240808", "EstRadio": "821*3636", "TipoDocFun": "LICENCIA MUNICIPAL", "DocFuncion": "1849 EXPED 2104-99", "EstabEmail": "INSN@ISN.GOB.PE", "FechaInici": 19291101.0, "CtgCodigo": "III-2", "EstabTipoD": "RESOLUCION DIRECTORAL", "EstabDocGz": "610\/2005-DG-DESP-DSS-DISA.V.LC.", "EstabGrupo": "POBLACION NIÃ‘OS", "EstabHorar": "24 HORAS", "EstabEstad": "ACTIVO", "EstabSitua": "REGISTRADO", "EstabCondi": "EN FUNCIONAMIENTO", "EstabInspe": "POR INSPECCIONAR", "Y": -12.0650749, "X": -77.0462094, "Z": 120.0, "EstabDescD": "LIMA CIUDAD", "EstabRepre": "ROBERTO LUIS SHIMABUKU AZATO", "Etiqueta": "INSTITUTOS DE SALUD ESPECIALIZADOS INSTITUTO NACIONAL DE SALUD DEL NIÃ‘O", "busq_cat": "III-2", "ESTABNOM_2": "INSTITUTO NACIONAL DE SALUD DEL NIÑO", "PROVINCIA": "LIMA", "DEPARTAMEN": "LIMA", "DISTRITO": "BREÑA", "CTGCODIGO_": "III-2" }, "geometry": { "type": "Point", "coordinates": [ -77.046209400443445, -12.06507490028639 ] } }
+]
+}
